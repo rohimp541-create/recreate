@@ -1,0 +1,23 @@
+{
+  "name": "recreate-recycle",
+  "version": "1.0.0",
+  "description": "RE:CREATE – حوّل القديم إلى جديد | منصة مشروعات إعادة التدوير والإبداع",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "recycle",
+    "diy",
+    "maker",
+    "education",
+    "instructables",
+    "recreate"
+  ],
+  "author": "RE:CREATE Team (Mohamed, Youssef, Roheem)",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

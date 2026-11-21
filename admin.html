@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1E293B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="icon" type="image/png" href="logo.png">
+  <title>لوحة التحكم والإدارة | RE:CREATE – حوّل القديم إلى جديد</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- Admin Header -->
+  <header class="site-header">
+    <div class="top-bar">
+      <div class="container flex-between">
+        
+        <div class="brand-group">
+          <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+            <img src="logo.png" alt="RE:CREATE Logo" class="project-official-logo">
+            <div class="logo-link">
+              <div class="logo-main">RE:<span class="logo-highlight">CREATE</span> <span class="admin-badge-tag"><i class="fa-solid fa-screwdriver-wrench"></i> لوحة الأدمن</span></div>
+              <span class="logo-tagline">إدارة وحذف وتعديل المشروعات والأقسام المنشورة</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Header Controls -->
+        <div class="header-actions">
+          <a href="index.html" class="btn btn-publish">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>العودة للموقع الرئيسي</span>
+          </a>
+          <button class="btn btn-outline" id="resetDataBtn" title="استعادة المشروعات الافتراضية">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>استعادة الافتراضي</span>
+          </button>
+          <button class="btn btn-outline" id="adminLogoutBtn" title="تسجيل الخروج من لوحة التحكم" style="border-color: #DC2626; color: #DC2626;">
+            <i class="fa-solid fa-lock"></i>
+            <span>قفل اللوحة</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Main Layout -->
+  <main class="container admin-container">
+    
+    <!-- Admin Hero / Stats Cards -->
+    <section class="admin-stats-grid">
+      <div class="admin-stat-card">
+        <div class="stat-icon yellow"><i class="fa-solid fa-boxes-stacked"></i></div>
+        <div class="stat-details">
+          <span class="stat-number" id="statProjectsCount">0</span>
+          <span class="stat-label">إجمالي المشروعات</span>
+        </div>
+      </div>
+
+      <div class="admin-stat-card">
+        <div class="stat-icon blue"><i class="fa-solid fa-layer-group"></i></div>
+        <div class="stat-details">
+          <span class="stat-number" id="statCategoriesCount">0</span>
+          <span class="stat-label">الأقسام المتاحة</span>
+        </div>
+      </div>
+
+      <div class="admin-stat-card">
+        <div class="stat-icon green"><i class="fa-solid fa-eye"></i></div>
+        <div class="stat-details">
+          <span class="stat-number" id="statTotalViews">0</span>
+          <span class="stat-label">المشاهدات التراكمية</span>
+        </div>
+      </div>
+
+      <div class="admin-stat-card">
+        <div class="stat-icon red"><i class="fa-solid fa-heart"></i></div>
+        <div class="stat-details">
+          <span class="stat-number" id="statTotalLikes">0</span>
+          <span class="stat-label">إجمالي الإعجابات</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admin Navigation Tabs -->
+    <div class="admin-tabs-nav">
+      <button class="admin-tab active" data-tab="tab-projects">
+        <i class="fa-solid fa-list-check"></i>
+        <span>إدارة المنشورات والمشروعات</span>
+      </button>
+      <button class="admin-tab" data-tab="tab-categories">
+        <i class="fa-solid fa-folder-tree"></i>
+        <span>إدارة الأقسام والتصنيفات</span>
+      </button>
+      <button class="admin-tab" data-tab="tab-add">
+        <i class="fa-solid fa-square-plus"></i>
+        <span>إضافة مشروع جديد كأدمن</span>
+      </button>
+      <button class="admin-tab" data-tab="tab-backup">
+        <i class="fa-solid fa-database"></i>
+        <span>النسخ الاحتياطي والأدوات</span>
+      </button>
+    </div>
+
+    <!-- Alert Message Bar -->
+    <div id="adminAlert" class="admin-alert" style="display: none;"></div>
+
+    <!-- ==========================================
+         TAB 1: MANAGE PROJECTS
+         ========================================== -->
+    <section class="admin-tab-pane active" id="tab-projects">
+      <div class="pane-header flex-between">
+        <div class="pane-title-group">
+          <h2>قائمة جميع المنشورات والمشروعات</h2>
+          <p>يمكنك تعديل أي تفاصيل، مراجعة ما نشره المستخدمون، أو حذف أي منشور غير مناسب.</p>
+        </div>
+
+        <div class="pane-filters">
+          <div class="admin-search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="adminProjectSearch" placeholder="بحث باسم المشروع أو الكاتب...">
+          </div>
+          <select id="adminCategoryFilter" class="admin-select">
+            <option value="all">جميع الأقسام</option>
+            <!-- Injected dynamically -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Projects Management Table -->
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th width="70">المعاينة</th>
+              <th>عنوان المشروع</th>
+              <th>القسم</th>
+              <th>الكاتب</th>
+              <th>الصعوبة والوقت</th>
+              <th>التفاعل</th>
+              <th width="180">الإجراءات والتحكم</th>
+            </tr>
+          </thead>
+          <tbody id="projectsTableBody">
+            <!-- Dynamic rows injected by admin.js -->
+          </tbody>
+        </table>
+      </div>
+      
+      <div id="noAdminProjects" class="empty-state" style="display: none; padding: 40px 20px;">
+        <i class="fa-solid fa-inbox empty-icon"></i>
+        <h3>لا توجد مشروعات مطابقة!</h3>
+        <p>جرّب تغيير كلمات البحث أو إعادة ضبط الفلتر.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TAB 2: MANAGE CATEGORIES
+         ========================================== -->
+    <section class="admin-tab-pane" id="tab-categories">
+      <div class="pane-header flex-between">
+        <div class="pane-title-group">
+          <h2>إدارة أقسام البرنامج (Categories)</h2>
+          <p>أضف أقساماً جديدة، غيّر أسماءها، حدد أيقوناتها، أو احذف الأقسام غير المطلوبة.</p>
+        </div>
+        <button class="btn btn-yellow" id="openAddCategoryBtn">
+          <i class="fa-solid fa-plus"></i> إضافة قسم جديد
+        </button>
+      </div>
+
+      <div class="categories-grid" id="adminCategoriesList">
+        <!-- Dynamic Category Cards injected by admin.js -->
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TAB 3: ADD PROJECT
+         ========================================== -->
+    <section class="admin-tab-pane" id="tab-add">
+      <div class="pane-header">
+        <div class="pane-title-group">
+          <h2>نشر مشروع جديد مباشرة من الأدمن</h2>
+          <p>سيتم نشر هذا المشروع فوراً في الموقع الرئيسي وظهوره لجميع الزوار والطلاب.</p>
+        </div>
+      </div>
+
+      <div class="admin-card-box">
+        <form id="adminAddProjectForm" class="add-form">
+          <div class="form-group">
+            <label>عنوان المشروع: *</label>
+            <input type="text" id="adminNewTitle" required placeholder="مثال: تحويل الكانز إلى مصباح مكتبي فخم">
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>القسم: *</label>
+              <select id="adminNewCategory" required>
+                <!-- Dynamic options -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label>اسم الناشر / الطالب: *</label>
+              <input type="text" id="adminNewAuthor" required value="إدارة RE:CREATE">
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>مستوى الصعوبة:</label>
+              <select id="adminNewDifficulty">
+                <option value="سهل">سهل (مبتدئ)</option>
+                <option value="متوسط">متوسط</option>
+                <option value="متقدم">متقدم</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>الوقت التقريبي للتنفيذ:</label>
+              <input type="text" id="adminNewTime" placeholder="مثال: 25 دقيقة">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>الخامة الأساسية:</label>
+            <input type="text" id="adminNewMaterial" placeholder="مثال: كرتون وبلاستيك">
+          </div>
+
+          <div class="form-group">
+            <label><i class="fa-solid fa-camera"></i> صورة توضيحية للمشروع (اختياري):</label>
+            <div class="image-upload-wrapper">
+              <input type="file" id="adminNewImageFile" accept="image/*" class="file-input-field">
+              <div id="adminNewImagePreviewBox" class="image-preview-box" style="display: none;">
+                <img id="adminNewImagePreviewImg" src="" alt="معاينة الصورة">
+                <button type="button" id="adminRemoveNewImageBtn" class="btn-remove-preview" title="إزالة الصورة"><i class="fa-solid fa-trash"></i></button>
+              </div>
+              <p class="form-help-text">اختر صورة من جهازك لحفظها في الداتابيز وعرضها في كارت المشروع والمواصفات.</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>وصف وملخص المشروع: *</label>
+            <textarea id="adminNewSummary" rows="3" required placeholder="شرح مبسط لأهمية المشروع وفكرته"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>الأدوات والخامات المطلوبة (افصل بينها بسطر جديد أو فاصلة):</label>
+            <textarea id="adminNewSupplies" rows="3" placeholder="كرتون مقوى&#10;مقص ومسطرة&#10;مسدس شمع"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>خطوات التنفيذ (خطوة في كل سطر): *</label>
+            <textarea id="adminNewSteps" rows="5" required placeholder="الخطوة 1: تنظيف الخامات وتجهيز مكان العمل&#10;الخطوة 2: قص الأبعاد وتحديد خطوط الثني&#10;الخطوة 3: التجميع والتثبيت بالشمع الساخن&#10;الخطوة 4: التزيين والاستخدام النهائي"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>نصيحة سر المهنة والأمان (Pro-Tip):</label>
+            <input type="text" id="adminNewProTip" placeholder="نصيحة الفريق للحصول على أفضل متانة ومظهر جذاب">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-yellow btn-block">
+              <i class="fa-solid fa-cloud-arrow-up"></i> حفظ ونشر المشروع في الموقع
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TAB 4: BACKUP & TOOLS
+         ========================================== -->
+    <section class="admin-tab-pane" id="tab-backup">
+      <div class="pane-header">
+        <div class="pane-title-group">
+          <h2>النسخ الاحتياطي وإدارة البيانات</h2>
+          <p>احفظ نسخة احتياطية من كل المشروعات والأقسام، أو استورد بيانات سابقة.</p>
+        </div>
+      </div>
+
+      <div class="backup-tools-grid">
+        <div class="tool-card">
+          <div class="tool-icon blue"><i class="fa-solid fa-file-export"></i></div>
+          <h3>تصدير نسخة احتياطية JSON</h3>
+          <p>قم بتحميل ملف يحتوي على كل المشروعات والأقسام الحالية لحفظها على جهازك.</p>
+          <button class="btn btn-outline" id="exportBackupBtn">
+            <i class="fa-solid fa-download"></i> تصدير البيانات (JSON)
+          </button>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon green"><i class="fa-solid fa-file-import"></i></div>
+          <h3>استيراد نسخة احتياطية</h3>
+          <p>استرجع البيانات والمشروعات من ملف JSON محفوظ مسبقاً.</p>
+          <input type="file" id="importFileInput" accept=".json" style="display: none;">
+          <button class="btn btn-outline" id="triggerImportBtn">
+            <i class="fa-solid fa-upload"></i> استيراد ملف JSON
+          </button>
+        </div>
+
+        <div class="tool-card danger-card">
+          <div class="tool-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <h3>استعادة البيانات الأصلية</h3>
+          <p>إعادة ضبط البرنامج وإرجاع كافة المشروعات والأقسام الـ 8 الافتراضية كما كانت.</p>
+          <button class="btn btn-outline text-red" id="restoreDefaultsBtn">
+            <i class="fa-solid fa-arrow-rotate-left"></i> استعادة المشروعات الافتراضية
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       MODAL: EDIT PROJECT (Full Content Editor)
+       ========================================== -->
+  <div class="modal-backdrop" id="editProjectModal" style="display: none;">
+    <div class="modal-dialog edit-dialog">
+      <div class="detail-header-bar flex-between">
+        <h2><i class="fa-solid fa-pen-to-square text-yellow"></i> تعديل بيانات ومحتوى المنشور</h2>
+        <button class="close-modal-btn" id="closeEditModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="editProjectForm" class="add-form">
+        <input type="hidden" id="editProjectId">
+
+        <div class="form-group">
+          <label>عنوان المشروع: *</label>
+          <input type="text" id="editTitle" required>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>القسم: *</label>
+            <select id="editCategory" required>
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label>صاحب المنشور / الكاتب: *</label>
+            <input type="text" id="editAuthor" required>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>مستوى الصعوبة:</label>
+            <select id="editDifficulty">
+              <option value="سهل">سهل (مبتدئ)</option>
+              <option value="متوسط">متوسط</option>
+              <option value="متقدم">متقدم</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>الوقت المتوقع:</label>
+            <input type="text" id="editTime">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>الخامة الأساسية:</label>
+          <input type="text" id="editMaterial">
+        </div>
+
+        <div class="form-group">
+          <label><i class="fa-solid fa-camera"></i> صورة المشروع / تغيير الصورة:</label>
+          <div class="image-upload-wrapper">
+            <input type="file" id="editImageFile" accept="image/*" class="file-input-field">
+            <div id="editImagePreviewBox" class="image-preview-box" style="display: none;">
+              <img id="editImagePreviewImg" src="" alt="معاينة الصورة">
+              <button type="button" id="editRemoveImageBtn" class="btn-remove-preview" title="إزالة الصورة"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            <input type="hidden" id="editExistingImage" value="">
+            <p class="form-help-text">يمكنك استبدال صورة المشروع الحالية بصورة جديدة أو حذفها للعودة إلى الرسم التوضيحي.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>وصف وملخص المشروع: *</label>
+          <textarea id="editSummary" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>الأدوات والخامات المطلوبة (افصل بينها بسطر جديد):</label>
+          <textarea id="editSupplies" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>خطوات التنفيذ بالتفصيل (خطوة في كل سطر): *</label>
+          <textarea id="editSteps" rows="6" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>نصيحة سر المهنة (Pro-Tip):</label>
+          <textarea id="editProTip" rows="2"></textarea>
+        </div>
+
+        <div class="form-actions flex-between">
+          <button type="button" class="btn btn-outline" id="cancelEditBtn">إلغاء</button>
+          <button type="submit" class="btn btn-yellow">
+            <i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات الآن
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: ADD / EDIT CATEGORY
+       ========================================== -->
+  <div class="modal-backdrop" id="categoryModal" style="display: none;">
+    <div class="modal-dialog category-dialog">
+      <div class="detail-header-bar flex-between">
+        <h2 id="categoryModalTitle"><i class="fa-solid fa-folder-plus text-yellow"></i> إضافة قسم جديد</h2>
+        <button class="close-modal-btn" id="closeCategoryModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="categoryForm" class="add-form">
+        <input type="hidden" id="editCategoryId">
+
+        <div class="form-group">
+          <label>اسم القسم الجديد: *</label>
+          <input type="text" id="categoryNameInput" required placeholder="مثال: الإطارات والمطاط القديم">
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>كود الأيقونة (Font Awesome):</label>
+            <select id="categoryIconSelect">
+              <option value="fa-palette">🎨 باليتة ألوان (fa-palette)</option>
+              <option value="fa-bolt">⚡ كهرباء وبرق (fa-bolt)</option>
+              <option value="fa-box-open">📦 كرتون وصندوق (fa-box-open)</option>
+              <option value="fa-atom">⚛️ فيزياء وذرة (fa-atom)</option>
+              <option value="fa-recycle">♻️ إعادة تدوير (fa-recycle)</option>
+              <option value="fa-hammer">🔨 مطرقة وخشب (fa-hammer)</option>
+              <option value="fa-shirt">👕 ملابس وأقمشة (fa-shirt)</option>
+              <option value="fa-house-circle-check">🏠 منزل وأسرة (fa-house-circle-check)</option>
+              <option value="fa-flask">🧪 علوم ومختبر (fa-flask)</option>
+              <option value="fa-leaf">🍃 نبات وزراعة (fa-leaf)</option>
+              <option value="fa-car">🚗 سيارات ومطاط (fa-car)</option>
+              <option value="fa-wrench">🔧 أدوات وورشة (fa-wrench)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>لون الشارة المميز (Hex Color):</label>
+            <input type="color" id="categoryColorInput" value="#D97706" style="height: 42px; cursor: pointer;">
+          </div>
+        </div>
+
+        <div class="form-actions flex-between" style="margin-top: 20px;">
+          <button type="button" class="btn btn-outline" id="cancelCategoryBtn">إلغاء</button>
+          <button type="submit" class="btn btn-yellow">
+            <i class="fa-solid fa-check"></i> حفظ القسم
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal-backdrop" id="deleteConfirmModal" style="display: none;">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="detail-header-bar flex-between">
+        <h3 class="text-red"><i class="fa-solid fa-triangle-exclamation"></i> تأكيد الحذف</h3>
+        <button class="close-modal-btn" id="closeDeleteConfirmBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div style="padding: 24px;">
+        <p id="deleteConfirmText" style="font-size: 15px; color: #334155; margin-bottom: 24px;">هل أنت متأكد من رغبتك في حذف هذا العنصر؟ لا يمكن التراجع عن هذا الإجراء.</p>
+        <div class="flex-between">
+          <button class="btn btn-outline" id="cancelDeleteBtn">تراجع</button>
+          <button class="btn btn-publish" id="executeDeleteBtn" style="background: #DC2626; border-color: #B91C1C;">
+            <i class="fa-solid fa-trash-can"></i> نعم، احذف نهائياً
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Password Login Gate Overlay -->
+  <div class="login-gate-overlay" id="adminLoginGate" style="display: none;">
+    <div class="login-card">
+      <img src="logo.png" alt="RE:CREATE Logo" class="login-official-logo">
+      <h2>دخول لوحة إدارة RE:CREATE</h2>
+      <p class="login-subtitle">هذه الصفحة خاصة بمسؤولي المنصة لإدارة وتعديل وحذف المحتوى.</p>
+      
+      <form id="adminLoginForm" class="login-form">
+        <div class="form-group text-right">
+          <label for="adminPasswordInput"><i class="fa-solid fa-key"></i> كلمة المرور السرية:</label>
+          <input type="password" id="adminPasswordInput" placeholder="أدخل كلمة المرور (الافتراضية: admin)" required autocomplete="current-password">
+        </div>
+        <p id="loginErrorMsg" class="login-error-text" style="display: none;">
+          <i class="fa-solid fa-circle-exclamation"></i> كلمة المرور غير صحيحة، حاول مرة أخرى.
+        </p>
+        <button type="submit" class="btn btn-yellow btn-block">
+          <i class="fa-solid fa-unlock"></i> دخول لوحة التحكم
+        </button>
+      </form>
+
+      <div class="login-footer-actions">
+        <a href="index.html" class="back-home-link">
+          <i class="fa-solid fa-arrow-right"></i> العودة للموقع العام
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="projects-data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

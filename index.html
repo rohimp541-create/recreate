@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#FFE500">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="icon" type="image/png" href="logo.png">
+  <title>RE:CREATE – حوّل القديم إلى جديد | منصة مشروعات إعادة التدوير والإبداع</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Instructables Yellow Header -->
+  <header class="site-header">
+    <div class="top-bar">
+      <div class="container flex-between">
+        
+        <!-- Logo & Slogan -->
+        <div class="brand-group">
+          <a href="index.html" class="logo-link-wrap" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+            <img src="logo.png" alt="RE:CREATE Logo" class="project-official-logo">
+            <div class="logo-link">
+              <div class="logo-main">RE:<span class="logo-highlight">CREATE</span></div>
+              <span class="logo-tagline">حوّل القديم إلى جديد • متترميش القديم.. اصنع منه حاجة جديدة!</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Instructables Search Bar -->
+        <div class="search-container">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="searchInput" placeholder="ابحث في المشروعات (كرتون، LED، جينز، فيزياء، بلاستيك...)" autocomplete="off">
+          <button id="clearSearchBtn" class="clear-search-btn" title="مسح البحث" style="display: none;">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <button class="btn btn-outline" id="openAboutProjectBtn" title="دليل وتفاصيل المشروع">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>عن المشروع</span>
+          </button>
+
+          <button class="btn btn-publish" id="openAddProjectModalBtn">
+            <i class="fa-solid fa-plus"></i>
+            <span>أضف فكرة</span>
+          </button>
+          
+          <button class="btn btn-outline" id="bookmarksToggleBtn" title="المشاريع المحفوظة">
+            <i class="fa-solid fa-bookmark"></i>
+            <span class="badge" id="bookmarkCount">0</span>
+          </button>
+
+          <div class="team-dropdown-btn" id="teamBadge" title="فريق العمل: محمد • يوسف • روحيم">
+            <div class="team-avatars">
+              <span class="avatar" style="background-color: #2563EB;">م</span>
+              <span class="avatar" style="background-color: #16A34A;">ي</span>
+              <span class="avatar" style="background-color: #D97706;">ر</span>
+            </div>
+            <span class="team-label">محمد • يوسف • روحيم</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Secondary Navigation: Categories (Rendered dynamically from live categories) -->
+    <nav class="categories-nav">
+      <div class="container nav-scroll-wrapper" id="categoriesNavContainer">
+        <!-- Injected dynamically by app.js from getLiveCategories() -->
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-layout container">
+    
+    <!-- Hero Spotlight Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> مشروع إعادة التدوير والإبداع
+        </div>
+        <h1>RE:CREATE – حوّل القديم إلى جديد</h1>
+        <p class="slogan-quote">
+          <i class="fa-solid fa-quote-right"></i>
+          <strong>شعارنا: "متترميش القديم.. اصنع منه حاجة جديدة!"</strong>
+        </p>
+        <p class="hero-description">
+          دليلك الإلكتروني المتكامل لاكتشاف قيمة الأشياء القديمة والمستهلكة في المنزل والمدرسة، وتحويلها خطوة بخطوة بالصور والأدوات إلى ابتكارات مفيدة، مشاريع تعليمية، وتحف ديكور عصرية!
+        </p>
+
+        <!-- 3 Core Pillars -->
+        <div class="goals-grid">
+          <div class="goal-item">
+            <div class="goal-icon green"><i class="fa-solid fa-earth-americas"></i></div>
+            <div>
+              <strong>حماية البيئة</strong>
+              <span>تقليل النفايات والمخلفات</span>
+            </div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-icon yellow"><i class="fa-solid fa-coins"></i></div>
+            <div>
+              <strong>توفير الميزانية</strong>
+              <span>استثمار الخامات المتوفرة مجاناً</span>
+            </div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-icon blue"><i class="fa-solid fa-brain"></i></div>
+            <div>
+              <strong>تشجيع الابتكار</strong>
+              <span>ربط التكنولوجيا بالتطبيق العملي</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physics & Scientific Interactive Widget (Instructables Maker Lab) -->
+      <div class="hero-interactive-card">
+        <div class="interactive-tag">
+          <i class="fa-solid fa-flask-vial"></i> مختبر الفيزياء التفاعلي
+        </div>
+        <h3>تجربة تحولات الطاقة والحركة</h3>
+        <p>جرب إطلاق البندول لمشاهدة تحول طاقة الوضع إلى طاقة حركة!</p>
+        <div class="pendulum-canvas-wrap">
+          <canvas id="pendulumCanvas" width="280" height="170"></canvas>
+        </div>
+        <div class="pendulum-controls">
+          <button id="releasePendulumBtn" class="btn btn-sm btn-yellow">
+            <i class="fa-solid fa-play"></i> أطلق البندول
+          </button>
+          <span id="pendulumSpeedText" class="pendulum-stats">طاقة الحركة: 0.0 جول</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Sort Bar -->
+    <div class="filter-bar flex-between">
+      <div class="filter-left">
+        <h2 id="sectionTitle" class="section-title">
+          <span>أفكار ومشروعات إعادة التدوير</span>
+          <span class="count-badge" id="projectsCount">0 مشروع</span>
+        </h2>
+      </div>
+
+      <div class="filter-right">
+        <!-- Difficulty filter -->
+        <div class="filter-dropdown">
+          <label for="difficultyFilter"><i class="fa-solid fa-sliders"></i> الصعوبة:</label>
+          <select id="difficultyFilter">
+            <option value="all">جميع المستويات</option>
+            <option value="سهل">سهل (مبتدئ)</option>
+            <option value="متوسط">متوسط</option>
+            <option value="متقدم">متقدم</option>
+          </select>
+        </div>
+
+        <!-- Material Filter -->
+        <div class="filter-dropdown">
+          <label for="materialFilter"><i class="fa-solid fa-cubes"></i> الخامة:</label>
+          <select id="materialFilter">
+            <option value="all">جميع الخامات</option>
+            <option value="كرتون">كرتون وورق</option>
+            <option value="بلاستيك وزجاج">بلاستيك وزجاج</option>
+            <option value="أسلاك وكهرباء">كهرباء وإلكترونيات</option>
+            <option value="خشب ومعادن">خشب ومعادن</option>
+            <option value="ملابس وأقمشة">ملابس وأقمشة</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State for Search -->
+    <div id="noResultsState" class="empty-state" style="display: none;">
+      <i class="fa-solid fa-magnifying-glass-chart empty-icon"></i>
+      <h3>لم نجد أي مشروع يطابق هذا البحث!</h3>
+      <p>جرّب كلمات بحث أخرى أو اختر قسماً من الأقسام بالأعلى.</p>
+      <button class="btn btn-yellow" id="resetFiltersBtn">عرض جميع المشروعات</button>
+    </div>
+
+    <!-- Projects Grid (Instructables Cards) -->
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Cards injected by app.js -->
+    </div>
+
+  </main>
+
+  <!-- Instructables-Style Step-by-Step Project Detail Modal -->
+  <div class="modal-backdrop" id="projectModal" style="display: none;">
+    <div class="modal-dialog instructables-detail-view">
+      
+      <!-- Modal Header Bar -->
+      <div class="detail-header-bar flex-between">
+        <div class="detail-meta-tags">
+          <span class="category-pill" id="modalCategory">الديكور والأعمال الفنية</span>
+          <span class="level-pill" id="modalDifficulty">سهل</span>
+          <span class="time-pill" id="modalTime"><i class="fa-regular fa-clock"></i> 20 دقيقة</span>
+        </div>
+        <div class="modal-actions">
+          <button class="action-circle-btn" id="modalBookmarkBtn" title="حفظ في المفضلة">
+            <i class="fa-regular fa-bookmark"></i>
+          </button>
+          <button class="action-circle-btn" id="modalPrintBtn" title="طباعة الخطوات">
+            <i class="fa-solid fa-print"></i>
+          </button>
+          <button class="close-modal-btn" id="closeModalBtn" title="إغلاق">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body Content -->
+      <div class="detail-content-scroll" id="modalScrollArea">
+        
+        <!-- Project Hero Header -->
+        <div class="project-hero">
+          <h1 id="modalTitle">اسم المشروع</h1>
+          
+          <div class="author-row">
+            <div class="author-avatar" id="modalAuthorAvatar">R</div>
+            <div class="author-info">
+              <span class="author-name">إعداد: <strong id="modalAuthor">فريق RE:CREATE</strong></span>
+              <span class="author-sub">مشروع إعادة التدوير والإبداع • دليل الـ DIY</span>
+            </div>
+            <div class="project-stats-pills">
+              <span><i class="fa-solid fa-eye"></i> <span id="modalViews">2.4k</span> مشاهدة</span>
+              <span><i class="fa-solid fa-heart text-red"></i> <span id="modalLikes">142</span> إعجاب</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Media Visual -->
+        <div class="featured-media-box" id="modalFeaturedMedia">
+          <!-- Rendered SVG -->
+        </div>
+
+        <!-- Project Intro Summary -->
+        <div class="project-intro-box">
+          <p id="modalDescription">وصف تفصيلي للمشروع وفائدته وكيفية استغلال الخامات المهدرة.</p>
+        </div>
+
+        <!-- Supplies / الأدوات المطلوبة (Instructables Signature Component) -->
+        <section class="supplies-section">
+          <div class="section-badge">
+            <i class="fa-solid fa-toolbox"></i> الأدوات والخامات المطلوبة (Supplies)
+          </div>
+          <p class="supplies-hint">ضع علامة (✓) بجوار الأدوات المتوفرة لديك قبل البدء في التنفيذ:</p>
+          <div class="supplies-checklist" id="modalSuppliesList">
+            <!-- Dynamic checkboxes -->
+          </div>
+        </section>
+
+        <!-- Stepper Navigation Mode Toggle -->
+        <div class="stepper-mode-bar flex-between">
+          <div class="stepper-title">
+            <i class="fa-solid fa-list-ol"></i> طريقة التنفيذ خطوة بخطوة:
+          </div>
+          <div class="view-mode-switch">
+            <button class="mode-btn active" id="viewAllStepsBtn"><i class="fa-solid fa-bars"></i> كل الخطوات</button>
+            <button class="mode-btn" id="viewPagedStepBtn"><i class="fa-solid fa-arrow-right-arrow-left"></i> خطوة بخطوة</button>
+          </div>
+        </div>
+
+        <!-- Paged Step Controls (When in step-by-step mode) -->
+        <div class="paged-controls" id="pagedControls" style="display: none;">
+          <button class="btn btn-outline" id="prevStepBtn"><i class="fa-solid fa-chevron-right"></i> الخطوة السابقة</button>
+          <span class="step-indicator" id="stepIndicatorText">خطوة 1 من 4</span>
+          <button class="btn btn-yellow" id="nextStepBtn">الخطوة التالية <i class="fa-solid fa-chevron-left"></i></button>
+        </div>
+
+        <!-- Steps Cards Container -->
+        <div class="steps-flow-container" id="modalStepsContainer">
+          <!-- Step cards rendered here -->
+        </div>
+
+        <!-- Pro-Tip Callout Box -->
+        <div class="tip-callout-box" id="modalProTipBox">
+          <div class="callout-header">
+            <i class="fa-solid fa-lightbulb"></i> نصيحة إضافية وسر المهنة
+          </div>
+          <p id="modalProTip">نصيحة الفريق للحصول على أفضل متانة ومظهر جذاب.</p>
+        </div>
+
+        <!-- Project Completed Celebration Box -->
+        <div class="completion-box">
+          <i class="fa-solid fa-circle-check completion-icon"></i>
+          <h3>مبروك! لقد أنجزت المشروع بنجاح</h3>
+          <p>شعارنا دائماً: "متترميش القديم.. اصنع منه حاجة جديدة!"</p>
+          <div class="completion-buttons">
+            <button class="btn btn-yellow" id="modalDoneBtn">
+              <i class="fa-solid fa-thumbs-up"></i> إعجاب بالمشروع
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- About Project Modal (The 10 Core Specification Pillars) -->
+  <div class="modal-backdrop" id="aboutProjectModal" style="display: none;">
+    <div class="modal-dialog about-dialog">
+      <div class="detail-header-bar flex-between">
+        <h2><i class="fa-solid fa-book-open-reader text-yellow"></i> دليل وتفاصيل مشروع RE:CREATE</h2>
+        <button class="close-modal-btn" id="closeAboutModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="about-modal-scroll">
+        <div class="about-hero-box">
+          <div class="about-badge">مشروع إعادة التدوير والإبداع</div>
+          <h3>RE:CREATE – حوّل القديم إلى جديد</h3>
+          <p class="about-slogan">"متترميش القديم.. اصنع منه حاجة جديدة!"</p>
+        </div>
+
+        <div class="about-sections-accordion">
+          <div class="about-card">
+            <h4><span class="num-circle">1</span> مقدمة المشروع</h4>
+            <p>يهدف مشروعنا إلى إنشاء برنامج يساعد الأشخاص على الاستفادة من الأشياء القديمة والمستهلكة وتحويلها إلى منتجات جديدة ومفيدة بدلاً من التخلص منها وإلقائها في القمامة، مع نشر ثقافة الحفاظ على البيئة وتشجيع الإبداع والعمل اليدوي.</p>
+          </div>
+
+          <div class="about-card">
+            <h4><span class="num-circle">2</span> فكرة المشروع</h4>
+            <p>برنامج إلكتروني متكامل يحتوي على أقسام متخصصة في مجالات إعادة التدوير المختلفة، يتيح للمستخدم استكشاف الأفكار بمواد المنزل والمدرسة ومشاهدة الخطوات والأدوات خطوة بخطوة بالصور التوضيحية.</p>
+          </div>
+
+          <div class="about-card">
+            <h4><span class="num-circle">3</span> الأقسام الأساسية للبرنامج</h4>
+            <p>تشمل الديكور والأعمال الفنية، الكهرباء والإلكترونيات، الكرتون والورق، الفيزياء والابتكارات العلمية، البلاستيك، الخشب والمعادن، الملابس والأقمشة، وإعادة تدوير الأشياء المنزلية، مع إمكانية التعديل والإضافة من لوحة الأدمن.</p>
+          </div>
+
+          <div class="about-card">
+            <h4><span class="num-circle">4</span> طريقة عمل البرنامج</h4>
+            <ol class="about-steps-list">
+              <li>يفتح المستخدم البرنامج ويشاهد الأقسام المختلفة.</li>
+              <li>يختار المجال الذي يهمه، فتظهر له الأفكار المتاحة.</li>
+              <li>يختار الفكرة لمشاهدة الصور، الأدوات المطلوبة، والخطوات التفصيلية.</li>
+              <li>يتعرف على مستوى صعوبة المشروع والوقت المتوقع لإنجازه.</li>
+            </ol>
+          </div>
+
+          <div class="about-card">
+            <h4><span class="num-circle">5</span> مميزات البرنامج</h4>
+            <ul class="about-list">
+              <li>سهولة الاستخدام وتصميم عصري مستوحى من Instructables.</li>
+              <li>لوحة تحكم أدمن كاملة لحذف وتعديل أي منشور أو قسم.</li>
+              <li>شرح مصور تفصيلي مع قوائم فحص الأدوات (Checklists).</li>
+              <li>إمكانية إضافة أفكار جديدة باستمرار وحفظ المفضلة.</li>
+            </ul>
+          </div>
+
+          <div class="about-card">
+            <h4><span class="num-circle">6</span> أهداف المشروع</h4>
+            <p>نشر ثقافة إعادة التدوير، تقليل كمية المخلفات، توفير التكاليف المالية، وربط المفاهيم العلمية والتكنولوجية بالتطبيقات العملية في الحياة اليومية.</p>
+          </div>
+
+          <div class="about-card">
+            <h4><span class="num-circle">7</span> الفئة المستهدفة</h4>
+            <p>الطلاب، المدارس، الأسر، محبو الأعمال اليدوية (DIY Makers)، وكل من يريد تحويل المهملات إلى قيمة نفعية وجمالية.</p>
+          </div>
+
+          <div class="about-card">
+            <h4><span class="num-circle">8</span> مراحل تنفيذ المشروع</h4>
+            <p>تحديد الأقسام ← جمع الأفكار والأدوات والخطوات ← تصميم واجهة البرنامج والرسومات ← إضافة المحتوى التفاعلي ← تجربة واختبار البرنامج والتأكد من سهولته.</p>
+          </div>
+
+          <div class="about-card">
+            <h4><span class="num-circle">9</span> النتيجة المتوقعة</h4>
+            <p>منصة إلكترونية متكاملة تكون المرجع والدليل الأول للطلاب والأسر لإعادة تدوير الخامات المنزلية بإبداع وكفاءة.</p>
+          </div>
+
+          <div class="about-card highlight-card">
+            <h4><span class="num-circle">10</span> فريق العمل والشعار</h4>
+            <p><strong>فريق العمل:</strong> طالبين متعاونين في التخطيط، تصميم البرنامج، جمع الأفكار، وتنفيذ المحتوى.</p>
+            <p class="final-slogan">"متترميش القديم.. اصنع منه حاجة جديدة!"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add New Project Modal (User Submission) -->
+  <div class="modal-backdrop" id="addProjectModal" style="display: none;">
+    <div class="modal-dialog add-project-dialog">
+      <div class="detail-header-bar flex-between">
+        <h2><i class="fa-solid fa-circle-plus"></i> إضافة فكرة جديدة لمشروع RE:CREATE</h2>
+        <button class="close-modal-btn" id="closeAddModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="addProjectForm" class="add-form">
+        <div class="form-group">
+          <label>اسم الفكرة / المشروع: *</label>
+          <input type="text" id="newTitle" required placeholder="مثال: حامل شاحن جوال من علبة شامبو قديمة">
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>القسم: *</label>
+            <select id="newCategory" required>
+              <!-- Dynamic live categories -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>مستوى الصعوبة:</label>
+            <select id="newDifficulty">
+              <option value="سهل">سهل (مبتدئ)</option>
+              <option value="متوسط">متوسط</option>
+              <option value="متقدم">متقدم</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>الوقت التقريبي للتنفيذ:</label>
+            <input type="text" id="newTime" placeholder="مثال: 20 دقيقة">
+          </div>
+
+          <div class="form-group">
+            <label>الخامة الأساسية:</label>
+            <select id="newMaterial">
+              <option value="كرتون">كرتون وورق</option>
+              <option value="بلاستيك وزجاج">بلاستيك وزجاج</option>
+              <option value="أسلاك وكهرباء">كهرباء وإلكترونيات</option>
+              <option value="خشب ومعادن">خشب ومعادن</option>
+              <option value="ملابس وأقمشة">ملابس وأقمشة</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fa-solid fa-camera"></i> صورة توضيحية للمشروع (اختياري):</label>
+          <div class="image-upload-wrapper">
+            <input type="file" id="newImageFile" accept="image/*" class="file-input-field">
+            <div id="newImagePreviewBox" class="image-preview-box" style="display: none;">
+              <img id="newImagePreviewImg" src="" alt="معاينة الصورة">
+              <button type="button" id="removeNewImageBtn" class="btn-remove-preview" title="إزالة الصورة"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            <p class="form-help-text">يمكنك التقاط صورة أو اختيار ملف من جهازك (JPG, PNG, WebP) تظهر على كارت المشروع وتفاصيل المواصفات.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>وصف الفكرة وفائدتها: *</label>
+          <textarea id="newDescription" rows="2" required placeholder="اشرح باختصار لماذا هذه الفكرة مفيدة وماذا نستخدم فيها"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>الأدوات والخامات المطلوبة (افصل بينها بسطر جديد أو فاصلة):</label>
+          <textarea id="newSupplies" rows="2" placeholder="كرتون، مقص، مسدس شمع، ألوان"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>خطوات التنفيذ بالتفصيل (خطوة في كل سطر): *</label>
+          <textarea id="newSteps" rows="4" required placeholder="الخطوة 1: تجهيز وتنظيف العبوة القديمة&#10;الخطوة 2: قص الأطراف بالمقاس المطلوب&#10;الخطوة 3: التجميع والتثبيت بالشمع&#10;الخطوة 4: التزيين والاستخدام النهائي"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-yellow btn-block">
+            <i class="fa-solid fa-cloud-arrow-up"></i> نشر الفكرة في البرنامج
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bookmarks Modal -->
+  <div class="modal-backdrop" id="bookmarksModal" style="display: none;">
+    <div class="modal-dialog bookmarks-dialog">
+      <div class="detail-header-bar flex-between">
+        <h2><i class="fa-solid fa-bookmark text-yellow"></i> مشروعاتك المفضلة المحفوظة</h2>
+        <button class="close-modal-btn" id="closeBookmarksModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="bookmarksList" class="bookmarks-content">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Instructables Style -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-top flex-between">
+        <div class="footer-brand" style="display: flex; align-items: center; gap: 14px;">
+          <img src="logo.png" alt="RE:CREATE Logo" style="width: 52px; height: 52px; object-fit: contain; border-radius: 10px; background: #fff; padding: 2px; border: 1.5px solid #000;">
+          <div>
+            <div class="logo-main">RE:<span class="logo-highlight">CREATE</span></div>
+            <p style="margin: 4px 0 0; font-size: 13px; color: #64748B;">مشروع إعادة التدوير والإبداع • حوّل القديم إلى جديد • متترميش القديم.. اصنع منه حاجة جديدة!</p>
+          </div>
+        </div>
+        <div class="footer-team-summary">
+          <strong>إعداد وتطوير:</strong>
+          <span>فريق طلاب مشروع RE:CREATE (محمد • يوسف • روحيم)</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom flex-between">
+        <div class="copyright">
+          © 2026 مشروع RE:CREATE - جميع الحقوق محفوظة لرواد الاستدامة والابتكار المدرسي.
+        </div>
+        <div class="footer-social-links">
+          <span class="pill-tag"><i class="fa-solid fa-leaf"></i> 8 أقسام متكاملة</span>
+          <span class="pill-tag"><i class="fa-solid fa-recycle"></i> خامات منزلية ومدرسية</span>
+          <span class="pill-tag"><i class="fa-solid fa-shield-halved"></i> آمن وتطبيقي</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation Bar (App Bar for Phones) -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <button class="mobile-nav-item active" id="mobNavHome" title="الرئيسية">
+      <i class="fa-solid fa-house"></i>
+      <span>الرئيسية</span>
+    </button>
+    <button class="mobile-nav-item" id="mobNavCategories" title="الأقسام">
+      <i class="fa-solid fa-layer-group"></i>
+      <span>الأقسام</span>
+    </button>
+    <button class="mobile-nav-item mobile-nav-publish" id="mobNavPublish" title="أضف فكرة">
+      <div class="publish-circle">
+        <i class="fa-solid fa-plus"></i>
+      </div>
+      <span>أضف فكرة</span>
+    </button>
+    <button class="mobile-nav-item" id="mobNavBookmarks" title="المحفوظات">
+      <div class="nav-badge-wrap">
+        <i class="fa-solid fa-bookmark"></i>
+        <span class="mobile-badge" id="mobBookmarkCount">0</span>
+      </div>
+      <span>محفوظاتي</span>
+    </button>
+    <button class="mobile-nav-item" id="mobNavAbout" title="عن المشروع">
+      <i class="fa-solid fa-circle-info"></i>
+      <span>عن المشروع</span>
+    </button>
+  </nav>
+
+  <script src="projects-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
