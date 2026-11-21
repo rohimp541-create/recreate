@@ -2001,6 +2001,7 @@ button, input, select, textarea {
     overflow: hidden;
     width: 100%;
     max-width: 100%;
+    min-width: 0;
   }
 
   .project-card:active {
