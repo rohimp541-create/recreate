@@ -51,45 +51,6 @@
   ],
   "projects": [
     {
-      "id": "recreate-user-1795287246328",
-      "title": "ro",
-      "category": "electronics",
-      "categoryName": "الكهرباء والإلكترونيات",
-      "author": "طالب مشارك",
-      "difficulty": "سهل",
-      "time": "20 دقيقة",
-      "material": "كرتون",
-      "views": "1",
-      "likes": 1,
-      "summary": "hhh",
-      "supplies": [],
-      "steps": [
-        {
-          "title": "الخطوة 1: bbbbb",
-          "description": "bbbbb",
-          "tip": "تأكد من ضبط الحواف بعناية والعمل في مكان آمن."
-        },
-        {
-          "title": "الخطوة 2: ggggg",
-          "description": "ggggg",
-          "tip": "تأكد من ضبط الحواف بعناية والعمل في مكان آمن."
-        },
-        {
-          "title": "الخطوة 3: ggg",
-          "description": "ggg",
-          "tip": "تأكد من ضبط الحواف بعناية والعمل في مكان آمن."
-        },
-        {
-          "title": "الخطوة 4: gg",
-          "description": "gg",
-          "tip": "تأكد من ضبط الحواف بعناية والعمل في مكان آمن."
-        }
-      ],
-      "proTip": "فكرة رائعة ومبتكرة شارك بها أحد الطلاب لدعم بيئة مدرستنا!",
-      "image": "/uploads/img_1795287246312_vo2zxm.png",
-      "coverSvg": "<svg viewBox=\"0 0 400 240\" class=\"card-svg\" xmlns=\"http://www.w3.org/2000/svg\">\n        <rect width=\"400\" height=\"240\" fill=\"#FEF3C7\"/>\n        <circle cx=\"200\" cy=\"115\" r=\"55\" fill=\"#FDE68A\"/>\n        <path d=\"M180 115 L220 115 M200 95 L200 135\" stroke=\"#D97706\" stroke-width=\"6\" stroke-linecap=\"round\"/>\n        <text x=\"200\" y=\"195\" font-size=\"14\" font-family=\"sans-serif\" font-weight=\"bold\" fill=\"#92400E\" text-anchor=\"middle\">فكرة مشارك جديدة</text>\n      </svg>"
-    },
-    {
       "id": "decor-bottles-vase",
       "title": "تحويل الزجاجات البلاستيكية الفارغة إلى مزهريات سيراميكية مودرن",
       "category": "decor",
@@ -536,5 +497,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-11-21T21:19:31.280Z"
+  "lastUpdated": "2026-11-22T00:12:44.020Z"
 }
