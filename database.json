@@ -329,7 +329,7 @@
       "time": "15 دقيقة",
       "material": "بلاستيك وزجاج",
       "views": "5,100",
-      "likes": 410,
+      "likes": 411,
       "summary": "حل بيئي عبقري للمحافظة على النباتات حية ومروية بالخاصية الشعرية حتى لو سافرت وتركت البيت لمدة أسبوعين، من خلال شطر زجاجة مياه واحدة!",
       "coverSvg": "<svg viewBox=\"0 0 400 240\" class=\"card-svg\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"400\" height=\"240\" fill=\"#F0FDF4\"/><path d=\"M150 90 L150 200 Q150 215 200 215 Q250 215 250 200 L250 90 Z\" fill=\"#E0F2FE\" stroke=\"#0284C7\" stroke-width=\"2\"/><path d=\"M152 145 L152 200 Q152 213 200 213 Q248 213 248 200 L248 145 Z\" fill=\"#38BDF8\" opacity=\"0.6\"/><path d=\"M155 80 L245 80 L230 160 L210 185 L190 185 L170 160 Z\" fill=\"#FDFBF7\" stroke=\"#475569\" stroke-width=\"2\"/><polygon points=\"158,85 242,85 228,155 172,155\" fill=\"#78350F\"/><path d=\"M200 120 L200 200\" stroke=\"#FFFFFF\" stroke-width=\"4\"/><path d=\"M200 120 L200 200\" stroke=\"#E2E8F0\" stroke-width=\"2\" stroke-dasharray=\"3,2\"/><path d=\"M200 85 Q170 50 160 30\" stroke=\"#16A34A\" stroke-width=\"3\" fill=\"none\"/><path d=\"M200 85 Q230 50 240 30\" stroke=\"#15803D\" stroke-width=\"3\" fill=\"none\"/><path d=\"M200 85 L200 20\" stroke=\"#22C55E\" stroke-width=\"3\" fill=\"none\"/><ellipse cx=\"160\" cy=\"30\" rx=\"10\" ry=\"6\" fill=\"#4ADE80\" transform=\"rotate(-30 160 30)\"/><ellipse cx=\"240\" cy=\"30\" rx=\"10\" ry=\"6\" fill=\"#4ADE80\" transform=\"rotate(30 240 30)\"/><ellipse cx=\"200\" cy=\"20\" rx=\"6\" ry=\"12\" fill=\"#22C55E\"/></svg>",
       "supplies": [
@@ -497,5 +497,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-11-22T16:36:40.616Z"
+  "lastUpdated": "2026-11-23T09:03:59.645Z"
 }
